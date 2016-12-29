@@ -41,7 +41,10 @@ Then go to `http://localhost:3000
 This sample is not production ready, but there is a production build to minify etc
 
 
-
+```bash
+$ npm install
+$ npm run build
+```
 
 
 ## What is Auth0?
