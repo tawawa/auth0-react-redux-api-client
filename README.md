@@ -34,7 +34,7 @@ $ npm install
 $ npm start
 ```
 
-Then go to `http://localhost:3000
+Then go to `http://localhost:3000`
 
 ## Deploying for PRD 
 
