@@ -8,7 +8,7 @@ therefore act as a GUI for DB HTTP endpoint access (from Rules, Custom DB Script
 
 ## Companion Repo
 
-See [https://github.com/tawawa/auth0-node-api-sample](https://github.com/tawawa/auth0-node-api-sample)
+See [auth0-node-api-sample](https://github.com/tawawa/auth0-node-api-sample)
 
 ## Running locally
 
