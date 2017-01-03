@@ -31,3 +31,9 @@ nav {
   padding-right: 5px;
 }
 
+.login-root {
+  width: 360px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+}

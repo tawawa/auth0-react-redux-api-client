@@ -25,10 +25,17 @@ const requireAuth = (nextState, replace) => {
   }
 };
 
+const parseAuthHash = (nextState, replace) => {
+  if (nextState.location.hash) {
+    const results = auth.parseHash(nextState.location.hash);
+    replace({ pathname: '/' });
+  }
+};
+
 export default (
   <Route path="/" component={App} auth={auth}>
     <IndexRoute component={HomePage} onEnter={requireAuth} />
-    <Route path="login" component={LoginPage} />
+    <Route path="login" component={LoginPage} onEnter={parseAuthHash} />
     <Route path="home" component={HomePage} onEnter={requireAuth} />
     <Route path="accounts" component={AccountsPage} onEnter={requireAuth} />
     <Route path="account" component={ManageAccountPage} onEnter={requireAuth} />
