@@ -8,7 +8,8 @@ import AccountsPage from './components/account/AccountsPage';
 import ManageAccountPage from './components/account/ManageAccountPage'; //eslint-disable-line import/no-named-as-default
 
 // TODO - externalize these params...
-const AUTH0_CLIENT_ID = 'o25W0jPI01yRzatTbiHhY0dR3M7wyk3u';
+// const AUTH0_CLIENT_ID = 'o25W0jPI01yRzatTbiHhY0dR3M7wyk3u';
+const AUTH0_CLIENT_ID = 'PoXI62VzgVM5iaMfZhiwR06AxQZNAhDE';
 const AUTH0_DOMAIN = 'demo-workshop.auth0.com';
 const RESOURCE_API_AUDIENCE = 'https://resourceapi.com';
 const ACCESS_TOKEN_SCOPES = 'read:account read:accounts create:account update:account delete:account';
