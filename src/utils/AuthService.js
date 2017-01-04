@@ -15,7 +15,6 @@ export default class AuthService extends EventEmitter {
     // localStorage.setItem('com.auth0.auth.nonce', fakeNonce);
 
     this.lock = new Auth0Lock(clientId, domain, {
-      // nonce: fakeNonce, // this is just for Custom DB Connection only
       auth: {
         redirectUrl: `${window.location.origin}/login`,
         responseType: 'id_token token',
@@ -23,7 +22,6 @@ export default class AuthService extends EventEmitter {
         params: {
           // Learn about scopes: https://auth0.com/docs/scopes
           scope: 'openid user_id name nickname email picture ' + scopes,
-          // nonce: '12345',  // this is just for Custom DB Connection only
           audience: audience
         }
       }

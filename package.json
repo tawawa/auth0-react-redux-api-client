@@ -37,7 +37,7 @@
     "redux-devtools-extension": "^1.0.0",
     "redux-thunk": "2.0.1",
     "toastr": "2.1.2",
-    "auth0-lock": "^10.2.2",
+    "auth0-lock": "^10.8.1",
     "jwt-decode": "^2.0.1",
     "react-bootstrap": "^0.30.0-rc.1"
   },
