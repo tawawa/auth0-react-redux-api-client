@@ -5,16 +5,16 @@ import {browserHistory} from 'react-router';
 
 export default class AuthService extends EventEmitter {
 
+
   constructor(clientId, domain, audience, scopes) {
     super();
+    const fakeNonce = this.fakeNonce = '12345';
     // Configure Auth0
     // TODO - FIX the nonce value to use properly generated one
-    var fakeNonce = '12345';
 
-    // this is to get around a bug with nonce checking on response from authentication
-    // localStorage.setItem('com.auth0.auth.nonce', fakeNonce);
 
     this.lock = new Auth0Lock(clientId, domain, {
+      // nonce: fakeNonce,
       auth: {
         redirectUrl: `${window.location.origin}/login`,
         responseType: 'id_token token',
@@ -22,6 +22,7 @@ export default class AuthService extends EventEmitter {
         params: {
           // Learn about scopes: https://auth0.com/docs/scopes
           scope: 'openid user_id name nickname email picture ' + scopes,
+          // nonce: fakeNonce,
           audience: audience
         }
       }
@@ -59,6 +60,8 @@ export default class AuthService extends EventEmitter {
   login() {
     // Call the show method to display the widget.
     this.lock.show();
+    // this is to get around a bug with nonce checking on response from authentication
+    localStorage.setItem('com.auth0.auth.nonce', this.fakeNonce);
   }
 
   loggedIn() {
