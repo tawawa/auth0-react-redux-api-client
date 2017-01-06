@@ -7,26 +7,38 @@ class LoginPage extends React.Component {
 
   getAuthParams() {
 
-    let employee_id = ReactDOM.findDOMNode(this.refs.employee_id).value;
-    let company_code = ReactDOM.findDOMNode(this.refs.company_code).value;
+    // let employee_id = ReactDOM.findDOMNode(this.refs.employee_id).value;
+    // let company_code = ReactDOM.findDOMNode(this.refs.company_code).value;
+    //
+    // let username = {
+    //   employee_id: employee_id,
+    //   company_code: company_code
+    // };
 
-    let username = {
-      employee_id: employee_id,
-      company_code: company_code
-    };
 
-    return {
-      // connection: 'DBConn1',
-      connection: 'HuubapDB',
-      // responseType: 'token',
-      scope: 'openid user_id nickname email read:account read:accounts create:account update:account delete:account',
-      responseType: 'id_token token',
-      audience: 'https://resourceapi.com',
-      nonce: '12345',
-      state: '12345',
-      username: JSON.stringify(username),
-      password: ReactDOM.findDOMNode(this.refs.password).value
-    };
+    https://demo-workshop.auth0.com/authorize?client_id=PoXI62VzgVM5iaMfZhiwR06AxQZNAhDE&response_type=id_token token&scope=openid profile read:accounts&redirect_uri=http://localhost:3000/login&nonce=12345&audience=https://resourceapi.com
+
+      // 'clientID',
+      //   'responseType',
+      //   'responseMode',
+      //   'redirectUri',
+      //   'scope',
+      //   'audience
+
+      return {
+        // connection: 'DBConn1',
+        clientID: 'PoXI62VzgVM5iaMfZhiwR06AxQZNAhDE',
+        redirectUri: 'http://localhost:3000/login',
+        connection: 'HuubapDB',
+        // responseType: 'token',
+        scope: 'openid user_id nickname email read:account read:accounts create:account update:account delete:account',
+        responseType: 'id_token token',
+        audience: 'https://resourceapi.com',
+        // nonce: '12345',
+        // state: '12345',
+        // username: JSON.stringify(username),
+        // password: ReactDOM.findDOMNode(this.refs.password).value
+      };
   }
 
   handleSubmit(e) {
@@ -42,39 +54,14 @@ class LoginPage extends React.Component {
     });
   }
 
-  googleLogin() {
-    this.props.auth.login({
-      connection: 'google-oauth2'
-    }, function (err) {
-      if (err) alert("something went wrong: " + err.message);
-    });
-  }
-
   render() {
     return (
       <div className="login-root">
         <h2>Login</h2>
         <Form onSubmit={this.handleSubmit.bind(this)}>
-
-          <FormGroup controlId="employee_id">
-            <ControlLabel>Employee ID</ControlLabel>
-            <FormControl type="text" ref="employee_id" placeholder="1234" required/>
-          </FormGroup>
-
-          <FormGroup controlId="company_code">
-            <ControlLabel>Company Code</ControlLabel>
-            <FormControl type="text" ref="company_code" placeholder="abcd" required/>
-          </FormGroup>
-
-          <FormGroup controlId="password">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl type="password" ref="password" placeholder="password" required/>
-          </FormGroup>
-
           <ButtonToolbar>
             <Button type="submit" bsStyle="primary">Sign In</Button>
             <Button onClick={this.signUp.bind(this)}>Sign Up</Button>
-            <Button bsStyle="link" onClick={this.googleLogin.bind(this)}>Login with Google</Button>
           </ButtonToolbar>
         </Form>
       </div>

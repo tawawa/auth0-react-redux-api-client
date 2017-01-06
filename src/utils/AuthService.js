@@ -1,6 +1,6 @@
-import {EventEmitter} from 'events'
-import {isTokenExpired} from './jwtHelper'
-import auth0 from 'auth0-js'
+import {EventEmitter} from 'events';
+import {isTokenExpired} from './jwtHelper';
+import auth0 from 'auth0-js';
 
 export default class AuthService extends EventEmitter {
 
@@ -23,28 +23,32 @@ export default class AuthService extends EventEmitter {
 
   login(params, onError) {
     console.log(params);
-    this.auth0.login(params, onError)
+    // this.auth0.login(params, onError);
+    this.auth0.authorize(params, onError);
   }
 
   signup(params, onError) {
-    this.auth0.signup(params, onError)
+    this.auth0.signup(params, onError);
   }
 
   parseHash(hash) {
-    const authResult = this.auth0.parseHash(hash);
-    if (authResult && authResult.accessToken) {
-      this.setIdToken(authResult.idToken);
-      this.setAccessToken(authResult.accessToken);
-      this.auth0.client.userInfo(authResult.accessToken, (error, user) => {
-        if (error) {
-          console.log('Error loading the Profile', error)
-        } else {
-          console.debug('ok, calling setProfile');
-          console.debug(user);
-          this.setProfile(user)
-        }
-      })
-    }
+    // const authResult = this.auth0.parseHash(hash);
+    this.auth0.parseHash(hash, (err, authResult) => {
+      debugger;
+      if (authResult && authResult.accessToken) {
+        this.setIdToken(authResult.idToken);
+        this.setAccessToken(authResult.accessToken);
+        this.auth0.client.userInfo(authResult.accessToken, (error, user) => {
+          if (error) {
+            console.log('Error loading the Profile', error);
+          } else {
+            console.debug('ok, calling setProfile');
+            console.debug(user);
+            this.setProfile(user);
+          }
+        });
+      }
+    });
   }
 
   loggedIn() {
@@ -66,7 +70,7 @@ export default class AuthService extends EventEmitter {
   getProfile() {
     // Retrieves the profile data from localStorage
     const profile = localStorage.getItem('profile');
-    return profile ? JSON.parse(localStorage.profile) : {}
+    return profile ? JSON.parse(localStorage.profile) : {};
   }
 
   setIdToken(idToken) {
