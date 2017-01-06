@@ -4,6 +4,20 @@ import AuthService from './../../utils/AuthService';
 
 class LoginPage extends React.Component {
 
+  constructor(props, context) {
+    super(props, context);
+    this.visibility = 'hidden';
+  }
+
+  // to prevent flickering
+  componentDidMount() {
+    const that = this;
+    setTimeout(function () {
+      that.visibility = '';
+      that.forceUpdate();
+    }, 1000);
+  }
+
   getAuthParams() {
     return {
       clientID: 'PoXI62VzgVM5iaMfZhiwR06AxQZNAhDE',
@@ -30,7 +44,7 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <Jumbotron>
+      <Jumbotron className={this.visibility}>
         <h2 className="main_title">
           <img src="https://cdn.auth0.com/styleguide/1.0.0/img/badge.svg"/>
         </h2>
@@ -51,6 +65,7 @@ LoginPage.contextTypes = {
 };
 
 LoginPage.propTypes = {
+  visibility: PropTypes.string,
   location: PropTypes.object,
   auth: PropTypes.instanceOf(AuthService)
 };
