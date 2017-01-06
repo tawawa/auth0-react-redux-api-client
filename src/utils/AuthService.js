@@ -1,6 +1,7 @@
 import {EventEmitter} from 'events';
 import {isTokenExpired} from './jwtHelper';
 import auth0 from 'auth0-js';
+import { browserHistory } from 'react-router';
 
 export default class AuthService extends EventEmitter {
 
@@ -11,7 +12,6 @@ export default class AuthService extends EventEmitter {
     this.auth0 = new auth0.WebAuth({
       domain: domain,
       clientID: clientId,
-      // responseType: 'token',
       audience: 'https://resourceapi.com',
       responseType: 'id_token token',
       redirectUri: `${window.location.origin}/login`
@@ -23,7 +23,6 @@ export default class AuthService extends EventEmitter {
 
   login(params, onError) {
     console.log(params);
-    // this.auth0.login(params, onError);
     this.auth0.authorize(params, onError);
   }
 
@@ -32,7 +31,6 @@ export default class AuthService extends EventEmitter {
   }
 
   parseHash(hash) {
-    // const authResult = this.auth0.parseHash(hash);
     this.auth0.parseHash(hash, (err, authResult) => {
       debugger;
       if (authResult && authResult.accessToken) {
@@ -45,6 +43,8 @@ export default class AuthService extends EventEmitter {
             console.debug('ok, calling setProfile');
             console.debug(user);
             this.setProfile(user);
+            debugger;
+            browserHistory.push('/');
           }
         });
       }
