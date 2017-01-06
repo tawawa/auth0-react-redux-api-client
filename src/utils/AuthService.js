@@ -15,6 +15,7 @@ export default class AuthService extends EventEmitter {
 
     this.lock = new Auth0Lock(clientId, domain, {
       // nonce: fakeNonce,
+      forgotPasswordLink: 'https://demo-workshop.us.webtask.io/password-reset/forgot',
       auth: {
         redirectUrl: `${window.location.origin}/login`,
         responseType: 'id_token token',
