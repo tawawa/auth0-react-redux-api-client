@@ -32,7 +32,6 @@ export default class AuthService extends EventEmitter {
 
   parseHash(hash) {
     this.auth0.parseHash(hash, (err, authResult) => {
-      debugger;
       if (authResult && authResult.accessToken) {
         this.setIdToken(authResult.idToken);
         this.setAccessToken(authResult.accessToken);
@@ -43,7 +42,6 @@ export default class AuthService extends EventEmitter {
             console.debug('ok, calling setProfile');
             console.debug(user);
             this.setProfile(user);
-            debugger;
             browserHistory.push('/');
           }
         });

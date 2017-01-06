@@ -23,16 +23,8 @@ const requireAuth = (nextState, replace) => {
 };
 
 const parseAuthHash = (nextState, replace) => {
-  debugger;
   if (nextState.location.hash) {
     auth.parseHash(nextState.location.hash);
-    // replace({ pathname: '/' });
-
-    // const results = auth.parseHash(nextState.location.hash, function () {
-    //   debugger;
-    //   replace({ pathname: '/' });
-    // });
-
   }
 };
 
