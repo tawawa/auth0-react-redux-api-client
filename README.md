@@ -6,6 +6,8 @@ A sample Auth0 React Redux SPA appplication with CRUD ops client for Account Man
 The domain object (account) corresponds to a typical Auth0 Custom DB table and this Client can
 therefore act as a GUI for DB HTTP endpoint access (from Rules, Custom DB Scripts or other webtasks).
 
+USE THE HOSTED PAGE BRANCH FOR THE Hosted Page Solution !!!
+
 ## Companion Repo
 
 See [auth0-node-api-sample](https://github.com/tawawa/auth0-node-api-sample)
